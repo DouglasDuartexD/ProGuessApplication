@@ -1,0 +1,46 @@
+﻿@model ProGuessApplication.Models.VMLogin
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width" />
+<html lang="pt-br">
+<head>
+    
+</head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form asp-controller="Home" asp-action="Login" method="post" autocomplete="do-not-autofill">
+                    <h2>Login</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" asp-for="email" required autocomplete="do-not-autofill">
+                        <label for="">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" asp-for="senha" required autocomplete="do-not-autofill">
+                        <label for="">Senha</label>
+                    </div>
+                    <div class="forget">
+                        <label for="">
+                            <input type="checkbox" asp-for="keepLoggedIn" />
+                            Manter Logado 
+                            </label>
+                        <label for=""><a href="#">Recuperar Senha</a></label>
+
+                    </div>
+                    <button class="button-default">Log in</button>
+                    <div class="register">
+                        <p>Não possui uma conta? <a href="usuario/Create">Registre-se.</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

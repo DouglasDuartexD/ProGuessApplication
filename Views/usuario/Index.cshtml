@@ -1,0 +1,75 @@
+﻿@model IPagedList<ProGuessApplication.Models.Root>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<section>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex flex-row justify-content-between align-items-center filters">
+                @using (Html.BeginForm())
+                {
+                    <div>
+                       @Html.TextBox("SearchString")
+                        <input type="submit" value="Buscar" />
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-1">
+        @foreach (var item in Model){
+        <div class="col-md-4">
+                    <div class="p-card bg-light p-2 rounded px-3">
+                    <div class="d-flex align-items-center">
+                            <img src="icons/GitHubFolderIcon.png" width="30px" class="mb-2">
+
+                            <b class="text-black-85 ml-2">@Html.DisplayFor(modelItem => item.name)</b>
+                    </div>
+                        <div class="profiles"><img class="rounded-circle" src="@Html.DisplayFor(modelItem => item.owner.avatar_url)" width="30"></div><span class="ml-3"></span>
+                        <span class="d-block text-black-50 mb-2"><b>@Html.DisplayNameFor(modelItem => item.owner.name): </b> @Html.DisplayFor(modelItem => item.owner.name)</span>
+                        <span class="d-block text-black-50 mb-2"><b>@Html.DisplayNameFor(modelItem => item.repositorio_id):</b> @Html.DisplayFor(modelItem => item.repositorio_id)</span>
+                        <span class="d-block text-black-50 mb-2"><b>Criado dia </b>@Html.DisplayFor(modelItem => item.DataCriacao) <b>ás</b> @Html.DisplayFor(modelItem => item.HoraCriacao)</span>
+                        <span class="d-block text-black-50 mb-2"><b>Atualizado dia </b> @Html.DisplayFor(modelItem => item.DataUltimoUpdate) <b>ás</b> @Html.DisplayFor(modelItem => item.HoraUltimoUpdate)</span>
+                    <div class="d-flex justify-content-between stats">
+                    <div class="d-flex flex-row align-items-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    <div><br /></div>
+        <div class="col text-light text-center">
+            Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        </div>
+    <div class="d-flex justify-content-center text-right mt-2">
+        <nav>
+            <ul class="pagination">
+                @Html.PagedListPager(
+                Model,
+                page => Url.Action("Index",
+                new
+                {
+                page,
+                sortOrder = ViewBag.CurrentSort,
+                currentFilter = ViewBag.CurrentFilter
+                }
+                ),
+                new PagedListRenderOptions()
+                {
+                    LiElementClasses = new List<string> {"btn btn-outline-light"}
+                })
+            </ul>
+        </nav>
+    </div>
+
+</div>
+</section>

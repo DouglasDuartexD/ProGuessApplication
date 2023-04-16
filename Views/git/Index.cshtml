@@ -1,0 +1,54 @@
+﻿@model ProGuessApplication.Models.git
+
+@{
+    ViewData["Title"] = "Adicionar Repositório";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+</head>
+<body>
+    <section>
+        <div class="form-box-register">
+            <div class="form-value">
+                <form asp-action="Index">
+                    <input asp-for="usuario_id" value="0" hidden />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2>Adicionar Repositório</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input asp-for="nome_usuario" type="text" required autocomplete="do-not-autofill">
+                        <label for="nome_usuario">Nome do usuário GitHub</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input asp-for="key" type="text" autocomplete="do-not-autofill">
+                        <label for="senha">Chave GitHub</label>
+                    </div>
+
+
+                    <div>
+                        <input type="submit" value="Registrar" class="button-confirmar">
+                    </div>
+                </form>
+                <div>
+                    <br />
+                    <input type="button"
+                           class="button-default"
+                           value="Voltar"
+                           onclick="location.href='@Url.Action("Index", "Usuario" )'" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

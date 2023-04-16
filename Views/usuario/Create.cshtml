@@ -1,0 +1,60 @@
+﻿@model ProGuessApplication.Models.usuario
+
+@{
+    ViewData["Title"] = "Criar novo usuário";
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+</head>
+<body>
+    <section>
+        <div class="form-box-register">
+            <div class="form-value">
+                <form asp-action="Create" >
+                    <input asp-for="perfil" value="a" hidden />
+                    <input asp-for="perfilId" value=0 hidden />
+                    <input asp-for="deletado" value=0 hidden />
+                    <input asp-for="desativado" value=0 hidden />
+                    <input asp-for="telefone" value="a" hidden />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2>Nova Conta</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input asp-for="nome" type="text" required autocomplete="do-not-autofill">
+                        <label for="nome">Nome</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input asp-for="email" type="email" required autocomplete="do-not-autofill">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input asp-for="senha" type="password" required autocomplete="do-not-autofill">
+                        <label for="senha">Senha</label>
+                    </div>
+
+
+                    <div>
+                        <input type="submit" value="Registrar" class="button-confirmar">
+                   </div>
+                </form>
+                <div>
+                    <br />
+                    <input type="button"
+                           class="button-default"
+                           value="Voltar"
+                           onclick="location.href='@Url.Action("Index", "Home" )'" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
